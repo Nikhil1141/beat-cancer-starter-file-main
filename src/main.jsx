@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App'
 import './index.css'
 import { PrivyProvider } from '@privy-io/react-auth';
+import { StateContextProvider } from './context'
 
 // privy auth provider
 const root = ReactDom.createRoot(document.getElementById('root'))
@@ -19,7 +20,9 @@ root.render(
         }}
     >
         <Router>
-            <App />
+            <StateContextProvider>
+                <App />
+            </StateContextProvider>
         </Router>
     </PrivyProvider>
 )
