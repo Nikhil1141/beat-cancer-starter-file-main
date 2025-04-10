@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { IconChevronRight } from "@tabler/icons-react";
 
 const MetricsCard = ({
@@ -36,4 +36,4 @@ const MetricsCard = ({
     </div>
 );
 
-export default MetricsCard;
+export default memo(MetricsCard);

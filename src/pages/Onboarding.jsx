@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../context";
 import { usePrivy } from "@privy-io/react-auth";
@@ -96,4 +96,4 @@ const Onboarding = () => {
     );
 };
 
-export default Onboarding;
+export default memo(Onboarding);

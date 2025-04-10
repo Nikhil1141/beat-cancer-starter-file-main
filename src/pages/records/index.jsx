@@ -1,12 +1,12 @@
-import { IconCirclePlus } from '@tabler/icons-react'
-import React, { memo, useEffect, useState } from 'react'
-import CreateRecordModal from "./components/create-record-modal";
-import { useNavigate } from 'react-router-dom';
-import { usePrivy } from '@privy-io/react-auth';
-import { useStateContext } from '../../context';
-import RecordCard from './components/record-card';
+import React, { useState, useEffect, memo } from "react";
+import { IconCirclePlus } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
+import { usePrivy } from "@privy-io/react-auth";
+import { useStateContext } from "../../context/index";
+import CreateRecordModal from "./components/create-record-modal"; // Adjust the import path
+import RecordCard from "./components/record-card"; // Adjust the import path
 
-const index = () => {
+const Index = () => {
     const navigate = useNavigate();
     const { user } = usePrivy();
     const {
@@ -97,7 +97,7 @@ const index = () => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default memo(index)
+export default memo(Index);

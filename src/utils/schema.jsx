@@ -1,11 +1,22 @@
 import { sql } from "drizzle-orm";
-import { integer, varchar, pgTable, serial, text } from "drizzle-orm/pg-core";
+import { integer, varchar, pgTable, serial, text, json } from "drizzle-orm/pg-core";
 
+// users schema
 export const Users = pgTable("users", {
-    id: serial('id').primaryKey(),
+    id: serial("id").primaryKey(),
     username: varchar("username").notNull(),
     age: integer("age").notNull(),
     location: varchar("location").notNull(),
+    folders: text("folders")
+        .array()
+        .notNull()
+        .default(sql`ARRAY[]::text[]`),
+    // treatmentCounts: integer("treatment_counts").notNull(),
+    treatment_counts: json("treatment_counts").notNull().default(sql`'{}'::json`),
+    folder: text("folder")
+        .array()
+        .notNull()
+        .default(sql`ARRAY[]::text[]`),
     createdBy: varchar("created_by").notNull(),
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { sun } from "../assets";
@@ -59,4 +59,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

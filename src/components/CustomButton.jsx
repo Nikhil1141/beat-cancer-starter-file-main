@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 const CustomButton = ({ btnType, title, handleClick, styles }) => {
     return (
@@ -12,4 +12,4 @@ const CustomButton = ({ btnType, title, handleClick, styles }) => {
     );
 };
 
-export default memo(CustomButton)
+export default memo(CustomButton);

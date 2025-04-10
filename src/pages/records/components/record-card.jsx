@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { IconChevronRight, IconFolder } from "@tabler/icons-react";
 
 const RecordCard = ({ record, onNavigate }) => {
@@ -21,4 +21,4 @@ const RecordCard = ({ record, onNavigate }) => {
     );
 };
 
-export default RecordCard;
+export default memo(RecordCard);

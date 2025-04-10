@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import DisplayInfo from "../components/DisplayInfo";
+import React, { memo, useState } from "react";
 
+import { DisplayInfo } from "../components";
 
 const Home = () => {
     return <DisplayInfo />;
 };
 
-export default Home;
+export default memo(Home);
