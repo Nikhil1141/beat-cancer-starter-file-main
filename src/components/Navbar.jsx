@@ -15,6 +15,22 @@ const Navbar = () => {
     const { ready, authenticated, login, user, logout } = usePrivy();
     const { fetchUsers, users, fetchUserRecords } = useStateContext();
 
+    // const [searchQuery, setSearchQuery] = useState("");
+    // const [filteredRecords, setFilteredRecords] = useState([]);
+
+    // useEffect(() => {
+    //     if (searchQuery.trim() === "") {
+    //         setFilteredRecords([]); // or all records
+    //     } else {
+    //         setFilteredRecords(
+    //             records.filter((rec) =>
+    //                 rec.recordName.toLowerCase().includes(searchQuery.toLowerCase())
+    //             )
+    //         );
+    //     }
+    // }, [searchQuery, records]);
+
+
     const fetchUserInfo = useCallback(async () => {
         if (!user) return;
 
@@ -51,10 +67,12 @@ const Navbar = () => {
 
     return (
         <div className="mb-[35px] flex flex-col-reverse justify-between gap-6 md:flex-row">
-            <div className="flex h-[52px] max-w-[458px] flex-row rounded-[100px] bg-[#1c1c24] py-2 pl-4 pr-2 lg:flex-1">
-                <input
+            <div className="flex h-[52px] max-w-[458px] flex-row rounded-[100px]  py-2 pl-4 pr-2 lg:flex-1">
+                {/*<input
                     type="text"
                     placeholder="Search for records"
+                    // value={searchQuery}
+                    // onChange={(e) => setSearchQuery(e.target.value)}
                     className="flex w-full bg-transparent font-epilogue text-[14px] font-normal text-white outline-none placeholder:text-[#4b5264]"
                 />
                 <div className="flex h-full w-[72px] cursor-pointer items-center justify-center rounded-[20px] bg-[#4acd8d]">
@@ -63,7 +81,7 @@ const Navbar = () => {
                         alt="search"
                         className="h-[15px] w-[15px] object-contain"
                     />
-                </div>
+                </div>*/}
             </div>
 
             <div className="hidden flex-row justify-end gap-2 sm:flex">

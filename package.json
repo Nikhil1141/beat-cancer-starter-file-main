@@ -20,13 +20,15 @@
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
     "appwrite": "14.0.1",
+    "buffer": "^6.0.3",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.32.1",
     "ethers": "^5.7.2",
     "markdown-to-jsx": "^7.4.7",
     "openai": "^4.52.0",
     "preline": "^2.3.0",
-    "react": "^18.2.0",
+    "process": "^0.11.10",
+    "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.4.4",
@@ -36,6 +38,11 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/plugin-transform-runtime": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/runtime": "^7.27.0",
     "@vitejs/plugin-react": "^2",
     "autoprefixer": "^10.4.13",
     "drizzle-kit": "^0.23.0",
@@ -43,7 +50,8 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.2.4",
-    "vite": "^3"
+    "vite": "^6.2.6",
+    "vite-plugin-node-polyfills": "^0.23.0"
   },
   "main": "index.js",
   "license": "MIT"
