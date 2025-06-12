@@ -133,20 +133,64 @@ function SingleRecordDetails() {
                             
                 `;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
-        const parsedResponse = JSON.parse(text);
+        // const result = await model.generateContent(prompt);
+        // const response = await result.response;
+        // const text = response.text();
+        // const parsedResponse = JSON.parse(text);
 
-        console.log(text);
-        console.log(parsedResponse);
-        const updatedRecord = await updateRecord({
-            documentID: state.id,
-            kanbanRecords: text,
-        });
-        console.log(updatedRecord);
-        navigate("/screening-schedules", { state: parsedResponse });
-        setIsProcessing(false);
+        // console.log(text);
+        // console.log(parsedResponse);
+        // const updatedRecord = await updateRecord({
+        //     documentID: state.id,
+        //     kanbanRecords: text,
+        // });
+        // console.log(updatedRecord);
+        // navigate("/screening-schedules", { state: parsedResponse });
+        // setIsProcessing(false);
+        const retryLimit = 3;
+    let attempt = 0;
+    let text = "";
+
+    while (attempt < retryLimit) {
+        try {
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            text = await response.text();
+
+            // ✅ Remove triple backticks and optional json
+            text = text.replace(/json|```/g, "").trim();
+
+            const parsedResponse = JSON.parse(text);
+
+            console.log("Parsed Kanban JSON:", parsedResponse);
+
+            const updatedRecord = await updateRecord({
+                documentID: state.id,
+                kanbanRecords: text,
+            });
+
+            console.log("Updated Record:", updatedRecord);
+
+            navigate("/screening-schedules", { state: parsedResponse });
+            break; // Exit retry loop on success
+        } catch (error) {
+            console.error(Attempt ${attempt + 1} failed:, error);
+
+            if (error.message.includes("503")) {
+                attempt++;
+                console.warn("Gemini model overloaded. Retrying in 5 seconds...");
+                await new Promise(res => setTimeout(res, 5000));
+            } else if (error instanceof SyntaxError) {
+                alert("AI returned invalid JSON. Please try again later.");
+                break;
+            } else {
+                alert("An unexpected error occurred. Check console for details.");
+                break;
+            }
+        } finally {
+            setIsProcessing(false);
+        }
+    }
     };
 
     return (
